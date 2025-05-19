@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Forever 21 - Fashion for Everyone</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #fff;
+      color: #f8c6d8;
+      line-height: 1.6;
+    }
+    header {
+      background-color: #f8c6d8;
+      color: #222;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    header h1 {
+      font-weight: 600;
+      font-size: 1.8rem;
+      letter-spacing: 2px;
+      color: #222;
+    }
+    nav a {
+      text-decoration: none;
+      color: #222;
+      margin-left: 1.5rem;
+      font-weight: 600;
+      transition: color 0.3s ease;
+      font-size: 0.9rem;
+    }
+    nav a:hover {
+      color: #f57c00;
+    }
+    .hero {
+      background: url('https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1470&q=80') center center/cover no-repeat;
+      height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      padding: 0 2rem;
+      position: relative;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+    }
+    .hero-content h2 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+    }
+    .hero-content p {
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+      font-weight: 300;
+    }
+    .btn-primary {
+      background-color: #f57c00;
+      color: #fff;
+      padding: 0.8rem 2rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      border-radius: 4px;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-primary:hover {
+      background-color: #e66200;
+    }
+    main {
+      max-width: 1200px;
+      margin: 3rem auto 5rem auto;
+      padding: 0 2rem;
+    }
+    .collections {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .collection-card {
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      background: #fff;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .collection-card:hover {
+      transform: scale(1.05);
+    }
+    .collection-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+    .collection-info {
+      padding: 1rem 1.5rem;
+      text-align: center;
+    }
+    .collection-info h3 {
+      margin: 0.5rem 0;
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: #222;
+    }
+    .collection-info p {
+      color: #666;
+      font-weight: 300;
+      font-size: 0.95rem;
+    }
+    footer {
+      background-color: #000;
+      color: #bbb;
+      text-align: center;
+      padding: 1.2rem 1rem;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+    }
+    @media (max-width: 600px) {
+      .hero-content h2 {
+        font-size: 2.2rem;
+      }
+      .hero-content p {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<header id="main-header" style="padding-left: 0; padding-right: 2rem;">
+    <h1 style="color: black; margin-left: 3rem;">4ever 21</h1>
+    <nav class="main-nav" style="display: flex; align-items: center;">
+        <form role="search" aria-label="Buscar productos" class="search-form" style="margin: 0; margin-right: 1.5rem; background: transparent;">
+            <input 
+            type="text" 
+            placeholder="Buscar..." 
+            aria-label="Buscar"
+            style="padding: 0.3rem 0.8rem; border: 1px solid #000000; border-radius: 10px; font-size: 0.95rem; outline: none; background: transparent; color: #000; transition: border-color 0.3s; height: 2rem;"
+            onfocus="this.style.borderColor='#cc66f5'"
+            onblur="this.style.borderColor='#000'"
+            >
+        </form>
+        <div class="nav-links" style="display: flex; align-items: center;">
+            <a href="#new-arrivals">Nuevas Colecciones</a>
+            <a href="#best-sellers">Más Vendidos</a>
+            <a href="#offers">Ofertas</a>
+        </div>
+    </nav>
+    </nav>
+</header>
+<script>
+    // Header hide on scroll down, show on scroll up
+    let lastScrollY = window.scrollY;
+    const header = document.getElementById('main-header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > lastScrollY && window.scrollY > 50) {
+            header.style.transform = 'translateY(-100%)';
+            header.style.transition = 'transform 0.4s cubic-bezier(.4,0,.2,1)';
+        } else {
+            header.style.transform = 'translateY(0)';
+            header.style.transition = 'transform 0.4s cubic-bezier(.4,0,.2,1)';
+        }
+        lastScrollY = window.scrollY;
+    });
+</script>
+  <section class="hero" role="banner" aria-label="Imagen principal de la empresa de ropa Forever 21">
+    <div class="hero-content">
+      <h2>Estilo que Inspira</h2>
+      <p>Moda accesible para todos. Descubre tu look perfecto hoy.</p>
+      <a href="#new-arrivals" class="btn-primary" aria-label="Ver nuevas colecciones">Explorar Colecciones</a>
+    </div>
+  </section>
+  <main>
+    <section id="new-arrivals" class="collections" aria-label="Nuevas colecciones">
+      <div class="collection-card" tabindex="0" role="article" aria-labelledby="new1-title">
+        <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=70" alt="Ropa casual moderna para mujer" />
+        <div class="collection-info">
+          <h3 id="new1-title">Nuevas Llegadas</h3>
+          <p>Lo último en moda casual para tu día a día.</p>
+        </div>
+      </div>
+      <div class="collection-card" tabindex="0" role="article" aria-labelledby="new2-title">
+        <img src="https://images.unsplash.com/photo-1495121605193-b116b5b09a94?auto=format&fit=crop&w=400&q=70" alt="Ropa deportiva para mujer joven" />
+        <div class="collection-info">
+          <h3 id="new2-title">Ropa Deportiva</h3>
+          <p>Actívate con estilo y comodidad en cada movimiento.</p>
+        </div>
+      </div>
+      <div class="collection-card" tabindex="0" role="article" aria-labelledby="new3-title">
+        <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=400&q=70" alt="Accesorios de moda para mujer" />
+        <div class="collection-info">
+          <h3 id="new3-title">Accesorios Exclusivos</h3>
+          <p>Complementa tu outfit con nuestros accesorios de temporada.</p>
+        </div>
+      </div>
+    </section>
+    <section id="best-sellers" style="margin-top: 4rem;" aria-label="Más vendidos">
+      <h2 style="text-align:center; font-weight:600; color:#222;">Los Más Vendidos</h2>
+      <p style="text-align:center; max-width:700px; margin: 0.5rem auto 2rem auto; color:#555; font-weight:300;">
+        Descubre las prendas favoritas que están revolucionando el estilo de todos.
+      </p>
+      <div class="collections">
+        <div class="collection-card" tabindex="0" role="article" aria-labelledby="best1-title">
+          <img src="https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=400&q=70" alt="Vestido elegante rojo para mujer" />
+          <div class="collection-info">
+            <h3 id="best1-title">Vestidos Elegantes</h3>
+            <p>Para momentos inolvidables, viste con glamour.</p>
+          </div>
+        </div>
+        <div class="collection-card" tabindex="0" role="article" aria-labelledby="best2-title">
+          <img src="https://images.unsplash.com/photo-1520975911785-3c62905eb8dd?auto=format&fit=crop&w=400&q=70" alt="Jeans de moda para mujer joven" />
+          <div class="collection-info">
+            <h3 id="best2-title">Jeans Ajustados</h3>
+            <p>Comodidad y estilo que se adapta a ti.</p>
+          </div>
+        </div>
+        <div class="collection-card" tabindex="0" role="article" aria-labelledby="best3-title">
+          <img src="https://images.unsplash.com/photo-1463107971871-fbac9ddb920f?auto=format&fit=crop&w=400&q=70" alt="Chaquetas modernas para mujer" />
+          <div class="collection-info">
+            <h3 id="best3-title">Chaquetas Modernas</h3>
+            <p>Prendas versátiles para combinar con todo.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="offers" style="margin-top: 4rem;" aria-label="Ofertas exclusivas">
+      <h2 style="text-align:center; font-weight:600; color:#222;">Ofertas Exclusivas</h2>
+      <p style="text-align:center; max-width:700px; margin: 0.5rem auto 2rem auto; color:#555; font-weight:300;">
+        Aprovecha descuentos especiales por tiempo limitado.
+      </p>
+      <div class="collections">
+        <div class="collection-card" tabindex="0" role="article" aria-labelledby="offer1-title">
+          <img src="https://images.unsplash.com/photo-1495121605193-b116b5b09a94?auto=format&fit=crop&w=400&q=70" alt="Ropa deportiva en oferta" />
+          <div class="collection-info">
+            <h3 id="offer1-title">Ropa Deportiva - 20% Off</h3>
+            <p>Potencia tu entrenamiento con precios increíbles.</p>
+          </div>
+        </div>
+        <div class="collection-card" tabindex="0" role="article" aria-labelledby="offer2-title">
+          <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=70" alt="Ropa casual en oferta" />
+          <div class="collection-info">
+            <h3 id="offer2-title">Casual - 15% Off</h3>
+            <p>Renueva tu guardarropa a precios que encantan.</p>
+          </div>
+        </div>
+        <div class="collection-card" tabindex="0" role="article" aria-labelledby="offer3-title">
+          <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=400&q=70" alt="Accesorios en oferta" />
+          <div class="collection-info">
+            <h3 id="offer3-title">Accesorios - 10% Off</h3>
+            <p>El complemento ideal para tu estilo único.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    &copy; 2024 Forever 21. Todos los derechos reservados.
+  </footer>
+</body>
+</html>
+
